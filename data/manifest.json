@@ -1,23 +1,21 @@
 {
   "name": "Longoi Kristian",
-  "short_name": "Longoi Kristian",
-  "description": "Worship Songbook App",
+  "short_name": "Longoi",
   "start_url": "index.html",
   "display": "standalone",
-  "background_color": "#0f172a",
+  "background_color": "#f1f5f9",
   "theme_color": "#2F80FF",
   "icons": [
     {
       "src": "asset/icon/icon.png",
-      "sizes": "192x192",
+      "sizes": "180x180",
       "type": "image/png",
-      "purpose": "any"
+      "purpose": "any maskable"
     },
     {
       "src": "asset/icon/icon.png",
       "sizes": "512x512",
-      "type": "image/png",
-      "purpose": "maskable"
+      "type": "image/png"
     }
   ]
 }
