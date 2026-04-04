@@ -1,4 +1,4 @@
-const CACHE_NAME = 'Longoi-Kristian-v7';
+const CACHE_NAME = 'Longoi-Kristian-v8';
 const ASSETS = [
   './',
   './index.html',
