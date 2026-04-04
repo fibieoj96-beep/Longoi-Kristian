@@ -29,6 +29,8 @@ body {
 }
 
 header {
+	padding-top: env(safe-area-inset-top);
+    padding-top: calc(env(safe-area-inset-top) + 20px);
     display: grid;
     grid-template-columns: 80px 1fr 80px;
     align-items: center;
