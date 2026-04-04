@@ -1,0 +1,216 @@
+:root {
+  --bg: #f1f5f9;
+  --surface: #ffffff;
+  --primary: #2F80FF;
+  --text-main: #0f172a;
+  --text-dim: #64748b;
+  --border: rgba(0, 0, 0, 0.08);
+}
+
+#app-list .title span {
+	color: var(--surface) !important;
+}
+
+body.dark-mode {
+  --bg: #0f172a;
+  --surface: #1e293b;
+  --text-main: #f8fafc;
+  --text-dim: #94a3b8;
+  --border: rgba(255, 255, 255, 0.1);
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  margin: 0;
+  background: var(--bg);
+  color: var(--text-main);
+  -webkit-tap-highlight-color: transparent;
+  line-height: 1.6;
+}
+
+header {
+  padding: 10px 20px;
+  background: transparent;
+  top: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+	gap: 30px;
+  height: 70px;
+  z-index: 1000;
+  padding-top: env(safe-area-inset-top);
+}
+
+#header-title {
+  margin: 0;
+  font-size: 3rem;
+  font-weight: 800;
+  color: var(--text-main);
+	position: static !important;
+	transform: none !important;
+}
+
+.back-btn, .icon-toggle {
+  background: none;
+  border: none;
+  color: var(--text-main);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 1010;
+}
+
+#back-button { display: none; }
+
+.sun-icon { display: none !important; }
+body.dark-mode .sun-icon { display: block !important; }
+body.dark-mode .moon-icon { display: none; 
+}
+
+#search-container {
+    position: relative; 
+    display: flex;
+    align-items: center;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    height: 46px;
+    width: 46px; 
+    border-radius: 23px;
+    overflow: hidden;
+    transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1), border-radius 0.3s;
+    cursor: pointer;
+    margin-left: auto;
+}
+
+#search-container.expanded {
+    width: 40%; 
+    min-width: 160px;
+    border-radius: 12px;
+    padding: 0 12px;
+}
+
+#search-input {
+    flex: 1;
+    border: none;
+    background: transparent;
+    outline: none;
+    color: var(--text-main);
+    font-size: 16px;
+    opacity: 0;
+    transition: opacity 0.2s;
+    padding-right: 30px; 
+}
+
+#search-container.expanded #search-input {
+    opacity: 1;
+}
+
+.search-btn {
+    position: absolute; 
+    right: 12px; 
+    top: 50%;
+    transform: translateY(-50%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: right 0.3s ease;
+    pointer-events: none;
+}
+
+#search-container:not(.expanded) .search-btn {
+    right: 50%;
+    transform: translate(50%, -50%);
+}
+
+main {
+  padding-bottom: 100px;
+}
+
+.card {
+  background: var(--surface);
+  margin: 10px 15px;
+  padding: 18px;
+  border-radius: 15px;
+  border: 1px solid var(--border);
+  cursor: pointer;
+  transition: transform 0.1s;
+}
+
+.card:active { transform: scale(0.98); }
+
+.title {
+  font-size: 17px;
+  font-weight: 600;
+}
+
+.tabbar {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 70px;
+  background: var(--surface);
+  display: flex; 
+  justify-content: space-evenly;
+  align-items: center;
+  border-top: 1px solid var(--border);
+  padding-bottom: env(safe-area-inset-bottom);
+  z-index: 2000;
+}
+
+.tabbar.hidden { display: none; }
+
+.nav-item {
+  flex: 1;
+  max-width: 80px; 
+  height: 55px;
+  display: flex;
+  flex-direction: column; 
+  align-items: center;
+  justify-content: center;
+  border-radius: 16px;
+  border: none;
+  background: transparent;
+  color: var(--text-dim);
+  gap: 2px;
+  transition: background 0.2s ease;
+  cursor: pointer;
+}
+
+.nav-item img {
+  width: 30px; 
+  height: 30px;
+  object-fit: contain;
+  display: none; 
+  image-rendering: -webkit-optimize-contrast;
+}
+
+.nav-item .icon-dim { display: block; }
+.nav-item.active .icon-dim { display: none; }
+.nav-item.active .icon-active { display: block !important; }
+
+.nav-item.active {
+  display: block;
+}
+
+.nav-item.active img,{
+	display: block;
+	filter: brightness(0) invert(1) !important;
+	-webkit-filter: brightness(0) invert(1);
+}
+
+.nav-label {
+  font-size: 10px;
+  font-weight: 700;
+}
+
+.lyrics-view {
+  padding: 25px;
+  line-height: 1.8;
+  font-size: 20px;
+}
+
+.verse-text {
+  white-space: pre-wrap;
+}

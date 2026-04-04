@@ -1,0 +1,22 @@
+[
+  {
+    "name": "others",
+    "seq": 8
+  },
+  {
+    "name": "prayers",
+    "seq": 23
+  },
+  {
+    "name": "psalms",
+    "seq": 31
+  },
+  {
+    "name": "hymns",
+    "seq": 121
+  },
+  {
+    "name": "liturgies",
+    "seq": 24
+  }
+]
