@@ -29,25 +29,21 @@ body {
 }
 
 header {
-    min-height: 80px; 
-    height: auto; 
-    padding-top: calc(env(safe-area-inset-top) + 10px); 
     display: grid;
-    grid-template-columns: 80px 1fr 80px;
+    grid-template-columns: 1fr; 
     align-items: center;
-    padding-bottom: 15px;
+    padding-top: calc(env(safe-area-inset-top) + 20px);
+    padding-bottom: 20px;
     position: relative;
     background: var(--bg);
     z-index: 100;
 }
 
 .header-slot-left { 
-    position: absolute; 
-    left: 15px; 
-    top: 50%; 
-    transform: translateY(-50%); 
-    margin-top: calc(env(safe-area-inset-top) / 2); 
-    z-index: 3000; 
+    position: fixed; 
+    left: 15px;
+    top: calc(env(safe-area-inset-top) + 15px); 
+    z-index: 5000; 
     display: flex; 
     align-items: center; 
 }
@@ -77,14 +73,12 @@ header {
     right: 20px;         
     top: 50%;
     transform: translateY(-50%);
-    margin-top: calc(env(safe-area-inset-top) / 2); /* Offset for the notch */
+    margin-top: calc(env(safe-area-inset-top) / 2); 
     display: flex;
-    flex-direction: column; 
     align-items: center;               
     gap: 15px;               
     z-index: 2000;
 }
-
 .dark-mode-toggle {
     display: flex;
     align-items: center;
@@ -116,15 +110,11 @@ header {
 }
 #header-title {
     margin: 0;
+    padding-left: 20px;
     font-size: 2.2rem;   
     font-weight: 900; 
     color: var(--text-main);
-    text-align: left; 
-    text-transform: uppercase; 
-    letter-spacing: 1px;    
-    grid-column: 1 / span 3;
-    padding-left: 20px;
-    padding-top: 5px; 
+    text-transform: uppercase;
 }
 
 header.is-song #header-title {
