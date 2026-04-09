@@ -1,0 +1,116 @@
+
+[
+  {
+    "book": "1 Tesalonika",
+    "chapter": 1,
+    "content": [
+      { "verse": 1, "header": "Pendahuluan", "text": "Daripada Paulus, Silwanus, dan Timotius. Kepada jemaah di Tesalonika yang ada dalam Allah Bapa dan Tuhan Yesus Kristus. Kasih karunia dan damai sejahtera menyertai kamu." },
+      { "verse": 2, "header": "Iman jemaah di Tesalonika", "text": "Kami sentiasa mengucap syukur kepada Allah bagi kamu semua dan mengingati kamu dalam doa kami." },
+      { "verse": 3, "text": "Di hadapan Allah dan Bapa kita, kami tidak putus-putus mengingati pekerjaanmu yang berasaskan iman, jerih lelahmu yang didorong oleh kasih, dan ketabahanmu dalam harapan kepada Tuhan kita Yesus Kristus." },
+      { "verse": 4, "text": "Saudara-saudaraku yang dikasihi Allah, kami tahu bahawa Dia telah memilih kamu," },
+      { "verse": 5, "text": "kerana Berita Baik yang kami bawa kepadamu bukannya datang melalui kata-kata sahaja, melainkan dengan kuasa, dengan Roh Kudus, dan dengan keyakinan yang penuh. Kamu sendiri tahu bagaimana cara hidup kami di tengah-tengah kamu demi manfaatmu." },
+      { "verse": 6, "text": "Kamu telah mengikut teladan kami dan teladan Tuhan; walaupun kamu mengalami penderitaan yang besar, kamu menerima firman itu dengan sukacita yang datang daripada Roh Kudus." },
+      { "verse": 7, "text": "Dengan demikian, kamu telah menjadi teladan kepada semua orang percaya di Makedonia dan Akhaya." },
+      { "verse": 8, "text": "Sebab firman Tuhan telah bergema daripada kamu, bukan sahaja di Makedonia dan Akhaya, malah imanmu kepada Allah telah tersebar ke mana-mana sahaja, sehingga kami tidak perlu berkata apa-apa lagi." },
+      { "verse": 9, "text": "Mereka sendiri bercerita tentang sambutan yang kami terima daripadamu, dan bagaimana kamu berpaling daripada berhala-berhala kepada Allah untuk melayani Allah yang hidup dan benar," },
+      { "verse": 10, "text": "serta menantikan kedatangan Anak-Nya dari syurga, yang telah dibangkitkan-Nya daripada kematian, iaitu Yesus yang menyelamatkan kita daripada kemurkaan yang akan datang." }
+    ]
+  },
+	  {
+    "chapter": 2,
+    "content": [
+      { "verse": 1, "header": "Pelayanan Paulus di Tesalonika", "text": "Kamu sendiri tahu, saudara-saudaraku, bahawa kunjungan kami kepadamu bukannya sia-sia." },
+      { "verse": 2, "text": "Walaupun kami telah menderita dan dihina di Filipi, sebagaimana yang kamu tahu, Allah telah memberikan keberanian kepada kami untuk memberitakan Berita Baik-Nya kepadamu di tengah-tengah tentangan yang hebat." },
+      { "verse": 3, "text": "Sebab rayuan kami bukannya berasaskan kesesatan, niat yang tidak murni, atau tipu muslihat." },
+      { "verse": 4, "text": "Sebaliknya, sebagaimana Allah telah melayakkan kami untuk dipercayakan dengan Berita Baik itu, demikianlah kami bercakap—bukannya untuk menyukakan hati manusia, melainkan untuk menyukakan hati Allah yang menguji hati kita." },
+      { "verse": 5, "text": "Seperti yang kamu tahu, kami tidak pernah menggunakan kata-kata manis untuk membodek atau menggunakan topeng untuk menyembunyikan ketamakan; Allah adalah saksi kami." },
+      { "verse": 6, "text": "Kami juga tidak mencari pujian daripada manusia, sama ada daripadamu mahupun daripada orang lain," },
+      { "verse": 7, "text": "walaupun sebagai rasul-rasul Kristus, kami berhak menuntut penghormatan. Sebaliknya, kami bersikap lemah lembut di tengah-tengah kamu, seperti seorang ibu yang mengasuh dan menyusui anak-anaknya sendiri." },
+      { "verse": 8, "text": "Oleh sebab kami sangat mengasihi kamu, kami rela memberikan bukan sahaja Berita Baik daripada Allah, malah nyawa kami juga, kerana kamu telah menjadi sangat akrab dengan kami." },
+      { "verse": 9, "text": "Tentu kamu ingat, saudara-saudara, akan jerih lelah dan susah payah kami. Kami bekerja siang dan malam supaya tidak membebankan sesiapa pun sementara kami memberitakan Berita Baik daripada Allah kepadamu." },
+      { "verse": 10, "text": "Kamulah saksi kami, dan Allah juga, betapa suci, adil, dan tidak bercelanya tingkah laku kami di tengah-tengah kamu yang percaya." },
+      { "verse": 11, "text": "Kamu tahu bahawa kami telah melayani setiap seorang daripadamu seperti seorang bapa melayani anak-anaknya sendiri," },
+      { "verse": 12, "text": "dengan memberi galakan, penghiburan, dan mendesak kamu supaya hidupmu selaras dengan kehendak Allah yang memanggil kamu ke dalam kerajaan dan kemuliaan-Nya." },
+      { "verse": 13, "text": "Kami juga sentiasa mengucap syukur kepada Allah kerana apabila kamu menerima firman Allah yang kamu dengar daripada kami, kamu menerimanya bukannya sebagai perkataan manusia, melainkan sebagai firman Allah yang sebenarnya, yang sedang bekerja dalam dirimu yang percaya." },
+      { "verse": 14, "text": "Sebab kamu, saudara-saudara, telah mengikut teladan jemaah-jemaah Allah dalam Kristus Yesus yang ada di Yudea; kamu telah mengalami penderitaan daripada bangsa sendiri, sebagaimana mereka juga menderita daripada orang Yahudi," },
+      { "verse": 15, "text": "yang telah membunuh Tuhan Yesus dan para nabi serta mengusir kami. Mereka tidak menyenangkan hati Allah dan memusuhi semua orang," },
+      { "verse": 16, "text": "dengan cuba menghalang kami daripada memberitakan penyelamatan kepada bangsa-bangsa bukan Yahudi. Dengan demikian, mereka sentiasa menambah dosa mereka sehingga akhirnya kemurkaan Allah menimpa mereka." },
+      { "verse": 17, "header": "Kerinduan Paulus untuk berkunjung lagi", "text": "Tetapi kami, saudara-saudara, setelah berjauhan daripadamu buat seketika (secara fizikal, bukannya dalam hati), sangat merindui kamu dan berusaha bersungguh-sungguh untuk menemui kamu lagi." },
+      { "verse": 18, "text": "Kami ingin datang menemuimu—terutamanya aku, Paulus, bukan hanya sekali tetapi dua kali—tetapi Iblis telah menghalang kami." },
+      { "verse": 19, "text": "Sebab siapakah harapan kami, atau sukacita kami, atau mahkota kemegahan kami di hadapan Tuhan kita Yesus apabila Dia datang kembali? Bukankah kamu?" },
+      { "verse": 20, "text": "Ya, kamulah kemuliaan dan sukacita kami!" }
+    ]
+  },
+	  {
+    "chapter": 3,
+    "content": [
+      { "verse": 1, "header": "Timotius diutus ke Tesalonika", "text": "Akhirnya, apabila kami tidak tahan lagi, kami mengambil keputusan untuk tinggal bersendirian di Atena." },
+      { "verse": 2, "text": "Kami mengutus Timotius, saudara dan hamba Allah yang bekerja bersama kami dalam memberitakan Berita Baik tentang Kristus, untuk menguatkan dan menggalakkan imanmu," },
+      { "verse": 3, "text": "supaya jangan ada sesiapa pun yang goyah imannya kerana penderitaan yang kamu alami. Kamu sendiri tahu bahawa kita memang ditetapkan untuk mengalami penderitaan sedemikian." },
+      { "verse": 4, "text": "Malah semasa kami bersama kamu dahulu, kami telah memberi amaran bahawa kita akan dianiaya; dan sebagaimana yang kamu tahu, itulah yang telah berlaku." },
+      { "verse": 5, "text": "Sebab itulah, apabila aku tidak tahan lagi, aku mengutus Timotius untuk mengetahui tentang imanmu, kerana aku takut kalau-kalau si penggoda telah menggoda kamu sehingga jerih lelah kami menjadi sia-sia." },
+      { "verse": 6, "header": "Berita baik daripada Timotius", "text": "Tetapi sekarang Timotius baru sahaja kembali daripada menemui kamu dan membawa berita baik tentang iman dan kasihmu. Dia memberitahu kami bahawa kamu sentiasa mengingati kami dengan penuh kasih sayang dan rindu untuk menemui kami, sebagaimana kami juga rindu untuk menemui kamu." },
+      { "verse": 7, "text": "Oleh itu, saudara-saudara, di tengah-tengah segala kesusahan dan penderitaan kami, kami sangat terhibur kerana kamu, iaitu kerana imanmu." },
+      { "verse": 8, "text": "Sebab sekarang kami benar-benar hidup, jika kamu tetap berdiri teguh dalam Tuhan." },
+      { "verse": 9, "text": "Bagaimanakah kami dapat cukup mengucap syukur kepada Allah bagi pihak kamu, atas segala sukacita yang kami rasakan di hadapan Allah kita kerana kamu?" },
+      { "verse": 10, "text": "Siang dan malam kami berdoa dengan bersungguh-sungguh supaya kami dapat menemui kamu lagi dan melengkapkan apa yang masih kurang dalam imanmu." },
+      { "verse": 11, "text": "Semoga Allah dan Bapa kita sendiri serta Tuhan kita Yesus membuka jalan bagi kami untuk datang menemuimu." },
+      { "verse": 12, "text": "Semoga Tuhan melimpahkan kasihmu sesama sendiri dan terhadap semua orang, sebagaimana kasih kami melimpah terhadap kamu." },
+      { "verse": 13, "text": "Semoga Dia menguatkan hatimu supaya suci dan tidak bercela di hadapan Allah dan Bapa kita pada waktu Tuhan kita Yesus datang kembali bersama-sama semua umat-Nya yang suci." }
+    ]
+  },
+	  {
+    "chapter": 4,
+    "content": [
+      { "verse": 1, "header": "Hidup yang menyenangkan hati Allah", "text": "Akhir sekali, saudara-saudara, kami meminta dan merayu kepadamu dalam Tuhan Yesus: Sebagaimana kamu telah belajar daripada kami tentang cara hidup yang menyenangkan hati Allah—dan sememangnya itulah cara hidupmu—hendaklah kamu melakukannya dengan lebih bersungguh-sungguh lagi." },
+      { "verse": 2, "text": "Sebab kamu tahu perintah-perintah yang telah kami berikan kepadamu melalui kewibawaan Tuhan Yesus." },
+      { "verse": 3, "text": "Kehendak Allah adalah supaya kamu menjadi suci; iaitu kamu menjauhkan diri daripada percabulan." },
+      { "verse": 4, "text": "Hendaklah setiap seorang daripada kamu tahu cara menjaga tubuhmu sendiri dalam kekudusan dan kehormatan," },
+      { "verse": 5, "text": "bukannya mengikut hawa nafsu yang tidak terkawal seperti bangsa-bangsa yang tidak mengenal Allah." },
+      { "verse": 6, "text": "Dalam hal ini janganlah sesiapa pun melanggar hak saudaranya atau memperdayakannya. Tuhan akan menghukum orang yang melakukan semua perkara sedemikian, sebagaimana yang telah kami beritahu dan peringatkan kepadamu dahulu." },
+      { "verse": 7, "text": "Sebab Allah memanggil kita bukannya untuk hidup dalam kecemaran, melainkan dalam kekudusan." },
+      { "verse": 8, "text": "Oleh itu, sesiapa yang menolak ajaran ini bukannya menolak manusia, melainkan menolak Allah yang mengurniakan Roh Kudus-Nya kepadamu." },
+      { "verse": 9, "text": "Mengenai kasih persaudaraan, kami tidak perlu menulis kepadamu kerana kamu sendiri telah diajar oleh Allah untuk saling mengasihi." },
+      { "verse": 10, "text": "Malah kamu memang mengasihi semua saudara seiman di seluruh Makedonia. Namun kami menggesa kamu, saudara-saudara, supaya melakukannya dengan lebih melimpah lagi." },
+      { "verse": 11, "text": "Berusahalah untuk hidup dengan tenang, uruskanlah hal ehwalmu sendiri, dan bekerjalah dengan tanganmu sendiri, sebagaimana yang telah kami pesankan kepadamu," },
+      { "verse": 12, "text": "supaya cara hidupmu mendapat penghormatan daripada orang luar dan supaya kamu tidak bergantung kepada sesiapa pun untuk keperluanmu." },
+      { "verse": 13, "header": "Kedatangan Tuhan", "text": "Saudara-saudara, kami tidak mahu kamu jahil tentang mereka yang telah meninggal dunia, supaya kamu tidak berdukacita seperti orang lain yang tidak mempunyai harapan." },
+      { "verse": 14, "text": "Sebab jika kita percaya bahawa Yesus telah mati dan telah bangkit semula, maka kita juga percaya bahawa Allah akan membawa bersama-sama Yesus mereka yang telah meninggal dunia dalam iman kepada-Nya." },
+      { "verse": 15, "text": "Menurut firman Tuhan, kami memberitahu kamu: Kita yang masih hidup dan masih tinggal sehingga kedatangan Tuhan, sama sekali tidak akan mendahului mereka yang telah meninggal dunia." },
+      { "verse": 16, "text": "Sebab Tuhan sendiri akan turun dari syurga dengan seruan yang kuat, dengan suara penghulu malaikat, dan dengan bunyi sangkakala Allah. Maka mereka yang mati dalam Kristus akan bangkit terlebih dahulu." },
+      { "verse": 17, "text": "Selepas itu, kita yang masih hidup dan masih tinggal akan diangkat bersama-sama mereka dalam awan untuk menemui Tuhan di angkasa. Dengan demikian, kita akan bersama-sama dengan Tuhan selama-lamanya." },
+      { "verse": 18, "text": "Oleh itu, hiburkanlah hati sesama sendiri dengan kata-kata ini." }
+    ]
+  },
+	  {
+    "chapter": 3,
+    "content": [
+      { "verse": 1, "header": "Hidup baru dalam Kristus", "text": "Oleh sebab kamu telah dibangkitkan bersama-sama Kristus, carilah perkara-perkara yang di atas, di mana Kristus berada, duduk di sebelah kanan Allah." },
+      { "verse": 2, "text": "Tumpukanlah fikiranmu pada perkara-perkara yang di atas, bukannya pada perkara-perkara yang di bumi." },
+      { "verse": 3, "text": "Sebab kamu telah mati, dan hidupmu tersimpan bersama-sama Kristus dalam Allah." },
+      { "verse": 4, "text": "Apabila Kristus, yang menjadi hidup kita, menyatakan diri-Nya kelak, maka kamu juga akan menyatakan diri bersama-sama Dia dalam kemuliaan." },
+      { "verse": 5, "text": "Oleh itu, matikanlah segala keinginan duniawi dalam dirimu: percabulan, kecemaran, hawa nafsu, keinginan jahat, dan ketamakan, yang merupakan penyembahan berhala." },
+      { "verse": 6, "text": "Semua perkara ini mendatangkan murka Allah ke atas orang yang tidak taat." },
+      { "verse": 7, "text": "Dahulu kamu juga hidup sedemikian semasa kamu masih berada di bawah kuasa perkara-perkara itu." },
+      { "verse": 8, "text": "Tetapi sekarang, buangkanlah semua ini daripada dirimu: kemarahan, kegeraman, niat jahat, fitnah, dan kata-kata kotor daripada mulutmu." },
+      { "verse": 9, "text": "Janganlah saling membohongi, kerana kamu telah menanggalkan manusia lama bersama segala perbuatannya," },
+      { "verse": 10, "text": "dan telah mengenakan manusia baru yang sentiasa diperbaharui dalam pengenalan yang benar menurut rupa Penciptanya." },
+      { "verse": 11, "text": "Dalam hal ini tidak ada lagi orang Yunani atau orang Yahudi, orang yang bersunat atau tidak bersunat, orang asing, orang gasar, hamba atau orang merdeka; tetapi Kristus adalah segala-galanya dan ada dalam semua." },
+      { "verse": 12, "text": "Oleh itu, sebagai umat pilihan Allah yang suci dan dikasihi-Nya, kenakanlah belas kasihan, kebaikan, kerendahan hati, kelembutan, dan kesabaran." },
+      { "verse": 13, "text": "Sabarlah sesama sendiri dan saling memaafkan jika sesiapa mempunyai alasan untuk merungut terhadap orang lain. Sebagaimana Tuhan telah memaafkan kamu, demikian jugalah kamu harus memaafkan." },
+      { "verse": 14, "text": "Selain semua itu, kenakanlah kasih yang menyatukan segala-galanya dalam kesempurnaan." },
+      { "verse": 15, "text": "Hendaklah damai sejahtera Kristus memerintah dalam hatimu, kerana sebagai anggota satu tubuh kamu telah dipanggil kepada damai sejahtera itu. Dan sentiasalah mengucap syukur." },
+      { "verse": 16, "text": "Hendaklah firman Kristus menetap dalam dirimu dengan segala kekayaannya. Ajarlah dan berilah amaran sesama sendiri dengan segala hikmat melalui mazmur, puji-pujian, dan lagu-lagu rohani, sambil menyanyi bagi Allah dengan ucapan syukur dalam hatimu." },
+      { "verse": 17, "text": "Dan apa-apa sahaja yang kamu lakukan, sama ada melalui kata-kata atau perbuatan, lakukanlah segalanya dalam nama Tuhan Yesus, sambil mengucap syukur kepada Allah Bapa melalui-Nya." },
+      { "verse": 18, "header": "Hubungan dalam keluarga baru", "text": "Hai isteri, tunduklah kepada suamimu, sebagaimana yang sepatutnya dalam Tuhan." },
+      { "verse": 19, "text": "Hai suami, kasihilah isterimu dan janganlah berlaku kasar terhadapnya." },
+      { "verse": 20, "text": "Hai anak-anak, taatilah ibu bapamu dalam segala hal, kerana hal ini menyenangkan hati Tuhan." },
+      { "verse": 21, "text": "Hai bapa-bapa, janganlah bangkitkan kemarahan anak-anakmu supaya mereka tidak tumpas semangatnya." },
+      { "verse": 22, "text": "Hai hamba-hamba, taatilah tuanmu di dunia ini dalam segala hal. Lakukanlah itu bukannya hanya semasa mereka melihatmu untuk menyukakan hati manusia, melainkan dengan tulus hati kerana takut akan Tuhan." },
+      { "verse": 1, "text": "Apa-apa sahaja yang kamu lakukan, lakukanlah dengan segenap hati seolah-olah kamu melakukannya untuk Tuhan dan bukannya untuk manusia." },
+      { "verse": 24, "text": "Kamu tahu bahawa daripada Tuhanlah kamu akan menerima warisan sebagai ganjaranmu. Kristus itulah Tuan yang kamu layani." },
+      { "verse": 25, "text": "Sesiapa yang melakukan kesalahan akan dibalas mengikut kesalahannya, kerana Allah tidak memandang rupa." }
+    ]
+  }
+]
+
