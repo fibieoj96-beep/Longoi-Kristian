@@ -29,6 +29,12 @@ For the best experience (removing the browser address bar and footer), follow th
 4.  Name the app (e.g., "Longoi Kristian") and tap **Add**.
 5.  The app will now appear on your Home Screen as a native-style icon.
 
+## Interface Preview
+
+| Main Interface (Light) | Dark Mode |
+| :---: | :---: |
+| <img src="screenshots/main_ui.png" width="250"> | <img src="screenshots/dark_mode.png" width="250"> |
+
 ---
 
 ## 📁 Struktur Projek (Project Structure)
