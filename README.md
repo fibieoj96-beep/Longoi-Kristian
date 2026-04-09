@@ -37,6 +37,10 @@ For the best experience (removing the browser address bar and footer), follow th
 
 ---
 
+## License & Copyright
+**© 2026 Hak Cipta Terpelihara.** All rights reserved. The source code and religious data structures are for personal/devotional use. Unauthorized redistribution or commercial use of the modified codebase is prohibited.
+
+
 ## 📁 Struktur Projek (Project Structure)
 ```text
 ├── assert/             # Icon sources
