@@ -11,7 +11,7 @@
     <link rel="apple-touch-icon" href="asset/icon/icon.png">
     <link rel="stylesheet" href="style.css">
 </head>
-<body>
+<body onscroll="handleAutoShrink()">
 
 <header class="textured-header" id="main-header">
     <div class="header-slot-left">
@@ -33,9 +33,9 @@
 </header>
 
 <main id="main-content">
-    <div class="search-wrapper">
+    <div class="search-wrapper" id="search-area">
         <div class="search-box" id="search-container" onclick="expandSearch()">
-            <input type="text" id="search-input" placeholder="Search..." onkeyup="handleSearch()" onblur="shrinkSearch()">
+            <input type="text" id="search-input" placeholder="Search..." onkeyup="handleSearch()">
             <div class="search-btn">
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
                     <circle cx="11" cy="11" r="8"></circle>
@@ -50,7 +50,7 @@
 </main>
 
 <nav class="tabbar" id="tabbar">
-	 <div class="nav-indicator"></div>
+    <div class="nav-indicator"></div>
     <button class="nav-item active" onclick="changeCategory('hymns', this)">
         <img src="asset/icon/longoi-active.png" class="icon-active">
         <img src="asset/icon/longoi-dim.png" class="icon-dim">
@@ -88,15 +88,34 @@
 <script>
 let allItems = [];
 let currentType = 'hymns';
-let currentBibleBook = null;
 let viewState = 'list';
 
 function toggleDarkMode() {
     const isDark = document.body.classList.toggle('dark-mode');
     localStorage.setItem('theme', isDark ? 'dark' : 'light');
 }
-
 if (localStorage.getItem('theme') === 'dark') document.body.classList.add('dark-mode');
+
+// Autoshrink apabila skrol
+function handleAutoShrink() {
+    const container = document.getElementById('search-container');
+    const input = document.getElementById('search-input');
+    if (window.scrollY > 20 && container.classList.contains('expanded')) {
+        container.classList.remove('expanded');
+        input.blur();
+    }
+}
+
+document.addEventListener('click', function(event) {
+    const container = document.getElementById('search-container');
+    const input = document.getElementById('search-input');
+    if (container && container.classList.contains('expanded')) {
+        if (!container.contains(event.target)) {
+            container.classList.remove('expanded');
+            input.blur();
+        }
+    }
+});
 
 async function loadData() {
     const categories = ["hymns", "bible", "psalms", "prayers", "liturgies", "others"];
@@ -107,34 +126,24 @@ async function loadData() {
             const data = await res.json();
             return data.map((item, index) => {
                 const finalTitle = item.title || item.name || item.judul || "No Title";
-                
-                // --- LOGIK KHAS UNTUK HOTURAN (LITURGIES) ---
-                let finalContent = "";
+                let searchTag = finalTitle.toLowerCase() + " ";
+                let displayContent = "";
+
                 if (cat === 'liturgies' && item.content_json) {
                     item.content_json.section.forEach(sec => {
-                        if (sec.section_title) {
-                            finalContent += `<h3 style="margin-top:30px; color:var(--primary); text-transform:uppercase;">${sec.section_title}</h3>`;
-                        }
+                        searchTag += (sec.section_title || "").toLowerCase() + " ";
                         sec.content.forEach(c => {
-                            if (c.header) {
-                                finalContent += `<div style="font-weight:900; margin-top:20px; color:var(--text-main); font-size:1.1rem;">${c.header}</div>`;
-                            }
-                            if (c.paragraph) {
-                                finalContent += `<div style="margin-bottom:15px; line-height:1.7; opacity:0.9;">${c.paragraph}</div>`;
-                            }
+                            searchTag += (c.header || "").toLowerCase() + " " + (c.paragraph || "").toLowerCase() + " ";
                         });
                     });
+                    displayContent = "LITURGI_CONTENT"; 
                 } else {
-                    finalContent = item.content || item.text || item.lyric || "";
+                    const raw = item.content || item.text || item.lyric || "";
+                    searchTag += raw.toLowerCase();
+                    displayContent = raw;
                 }
 
-                return { 
-                    ...item, 
-                    type: cat, 
-                    id: item.id || (index + 1),
-                    title: finalTitle,
-                    content: finalContent
-                };
+                return { ...item, type: cat, id: item.id || (index + 1), title: finalTitle, content: displayContent, searchTag: searchTag };
             });
         } catch(e) { return []; }
     });
@@ -143,147 +152,283 @@ async function loadData() {
     renderList(currentType);
 }
 
-function updateHeaderUI(isCenter) {
-    const titleHeader = document.getElementById('header-title');
-    const darkToggle = document.getElementById('dark-toggle');
-    const header = document.getElementById('main-header');
-    const backBtn = document.getElementById('back-button');
-    
-    if (header) {
-        header.style.display = 'flex';
-        header.style.flexDirection = 'row';
-        header.style.alignItems = 'center';
-        header.style.justifyContent = 'space-between';
-        header.style.position = 'relative';
-        header.style.paddingTop = 'calc(env(safe-area-inset-top) + 10px)';
-        header.style.minHeight = isCenter ? '90px' : '70px';
-        header.style.paddingBottom = isCenter ? '15px' : '10px';
-        header.style.paddingLeft = '20px';
-        header.style.paddingRight = '20px';
+function expandSearch() {
+    const container = document.getElementById('search-container');
+    const input = document.getElementById('search-input');
+    if (container) {
+        container.classList.add('expanded');
+        setTimeout(() => { if (input) input.focus(); }, 150);
     }
-
-    if (titleHeader) {
-        titleHeader.style.fontWeight = '900';
-        titleHeader.style.textTransform = 'uppercase';
-        titleHeader.style.fontSize = '2.2rem';
-        titleHeader.style.margin = '0';
-        
-        if (isCenter) {
-            titleHeader.style.position = 'absolute';
-            titleHeader.style.left = '50%';
-            titleHeader.style.top = 'calc(env(safe-area-inset-top) + 18px)';
-            titleHeader.style.transform = 'translateX(-50%)';
-        } else {
-            titleHeader.style.position = 'static';
-            titleHeader.style.transform = 'none';
-        }
-    }
-    
-    if (darkToggle) {
-        if (isCenter) {
-            darkToggle.style.setProperty('display', 'none', 'important');
-        } else {
-            darkToggle.style.setProperty('display', 'flex', 'important');
-            darkToggle.style.position = 'static'; 
-            darkToggle.style.marginRight = '10px'; 
-            darkToggle.style.transform = 'none';
-        }
-    }
-
-    if (backBtn) {
-        if (isCenter) {
-            backBtn.style.display = 'flex';
-            backBtn.style.position = 'static';
-            backBtn.style.transform = 'scale(0.85)';
-            backBtn.style.transformOrigin = 'left center';
-            backBtn.style.marginTop = '8px';
-        } else {
-            backBtn.style.display = 'none';
-        }
-    }
-}
-
-// FIX: Memastikan senarai Alkitab tidak tersekat
-function renderList(type, filteredItems = null, bibleContent = null) {
-    const listContainer = document.getElementById("app-list");
-    updateHeaderUI(false);
-    
-    // Jika ada bibleContent (hasil carian atau view ayat), paparkan terus
-    if (bibleContent) {
-        listContainer.innerHTML = bibleContent;
-        return;
-    }
-    
-    // Jika tidak, paparkan senarai mengikut kategori
-    const items = filteredItems || allItems.filter(i => i.type === type);
-    if (items.length === 0) {
-        listContainer.innerHTML = '<div style="text-align:center; padding:50px; opacity:0.5;">Tiada Data</div>';
-        return;
-    }
-    listContainer.innerHTML = items.map((item) => {
-        const displayTitle = item.title || item.name || "No Title";
-        return `<div class="card" onclick="openDetail('${item.id}', '${item.type}')"><div class="title">${displayTitle}</div></div>`;
-    }).join("");
 }
 
 async function handleSearch() {
     const query = document.getElementById('search-input').value.toLowerCase().trim();
     const titleHeader = document.getElementById('header-title');
-    const titles = { 'hymns': 'Longoi','bible': 'Alkitab', 'psalms': 'Zabur', 'prayers': 'Doa', 'liturgies': 'Hoturan', 'others': 'Vokon' };
-
+    
     if (query === "") {
+        const titles = { 'hymns': 'Longoi','bible': 'Alkitab', 'psalms': 'Zabur', 'prayers': 'Doa', 'liturgies': 'Hoturan', 'others': 'Vokon' };
         titleHeader.innerText = titles[currentType] || "More";
         renderList(currentType);
         return;
     }
 
+    if (currentType === 'bible') {
+        const bibleJumpMatch = query.match(/^([1-3]?\s*[a-z]+)?\s*(\d+):(\d+)$/);
+        if (bibleJumpMatch) {
+            const bookSearch = (bibleJumpMatch[1] || "").trim();
+            const chapterNum = parseInt(bibleJumpMatch[2]);
+            const verseNum = bibleJumpMatch[3];
+            const bibleBooks = allItems.filter(i => i.type === 'bible' && i.title.toLowerCase().includes(bookSearch));
+            if (bibleBooks.length > 0) {
+                const book = bibleBooks[0];
+                renderBibleSpecificAuto(book.id, chapterNum - 1, verseNum);
+                document.getElementById('search-input').value = "";
+                document.getElementById('search-container').classList.remove('expanded');
+                return;
+            }
+        }
+
+        const bibleListMatch = query.match(/^([1-3]?\s*[a-z]+)?\s*(\d+)$/);
+        if (bibleListMatch) {
+            const bookSearch = (bibleListMatch[1] || "").trim();
+            const chapterNum = parseInt(bibleListMatch[2]);
+            const bibleBooks = allItems.filter(i => i.type === 'bible' && i.title.toLowerCase().includes(bookSearch));
+            
+            if (bibleBooks.length > 0) {
+                const book = bibleBooks[0];
+                titleHeader.innerText = "Results";
+                renderBibleSearchList(book.id, chapterNum);
+                return;
+            }
+        }
+    }
+
     const filtered = allItems.filter(item => {
         if (item.type !== currentType) return false;
-        const inTitle = item.title.toLowerCase().includes(query);
-        const inContent = item.content && item.content.toLowerCase().includes(query);
-        return inTitle || inContent;
+        if (/^\d+$/.test(query)) {
+            return item.title.toLowerCase().startsWith(query + ".") || 
+                   item.title.toLowerCase().startsWith(query + " ") ||
+                   item.searchTag.includes(" " + query + " ");
+        }
+        return item.searchTag.includes(query);
     });
 
     titleHeader.innerText = "Results";
     renderList(null, filtered);
 }
 
+async function renderBibleSearchList(bookId, chapterNum) {
+    try {
+        const res = await fetch(`data/bible/${bookId}.json?v=${new Date().getTime()}`);
+        const data = await res.json();
+        const ch = data.find(c => String(c.chapter).includes(String(chapterNum)));
+        
+        if (ch) {
+            const listContainer = document.getElementById("app-list");
+            listContainer.innerHTML = ch.content.map(v => `
+                <div class="card" onclick="renderBibleSpecificAuto('${bookId}', ${data.indexOf(ch)}, '${v.verse}')">
+                    <div class="title" style="text-align:left;">
+                        <span style="opacity:0.5; font-size:0.8rem;">${bookId} ${chapterNum}:${v.verse}</span><br>
+                        ${v.text.substring(0, 65)}...
+                    </div>
+                </div>
+            `).join("");
+        } else {
+            document.getElementById("app-list").innerHTML = '<div style="text-align:center;padding:50px;opacity:0.5;">Tiada Data</div>';
+        }
+    } catch (e) {
+        console.error(e);
+    }
+}
+
 function changeCategory(type, el) {
     currentType = type;
     viewState = 'list';
-    
     const navItems = document.querySelectorAll('.nav-item');
     const index = Array.from(navItems).indexOf(el);
     document.documentElement.style.setProperty('--nav-index', index);
-    navItems.forEach(b => b.classList.remove('active'));
+    navItems.forEach(item => item.classList.remove('active'));
     if (el) el.classList.add('active');
-
-    const input = document.getElementById('search-input');
-    if (input) input.value = ""; 
+    
+    document.getElementById('search-input').value = ""; 
+    document.getElementById('search-container').classList.remove('expanded');
+    
     const titles = { 'hymns': 'Longoi','bible': 'Alkitab', 'psalms': 'Zabur', 'prayers': 'Doa', 'liturgies': 'Hoturan', 'others': 'Vokon' };
     document.getElementById('header-title').innerText = titles[type] || "More";
+    
     showListView();
 }
 
+async function renderBibleVersesAuto(bookId, chapterIndex) {
+ 
+document.querySelector('.tabbar-watermark').style.setProperty('background', 'var(--bg)', 'important');
+   
+document.getElementById('search-area').style.display = 'none';
+    document.getElementById('tabbar').classList.add('hidden');
+    
+    const searchInput = document.getElementById('search-input');
+    const searchContainer = document.getElementById('search-container');
+    if (searchInput) searchInput.value = "";
+    if (searchContainer) searchContainer.classList.remove('expanded');
+
+    try {
+        const res = await fetch(`data/bible/${bookId}.json?v=${new Date().getTime()}`);
+        const data = await res.json();
+        const ch = data[chapterIndex];
+        if (!ch) return;
+        
+        const cleanNum = String(ch.chapter).replace(/Bab/gi, "").trim();
+        
+        let html = `
+            <div class="bible-reader-view" style="padding:20px 15px; text-align:left;">
+                <div style="text-align:center; margin-bottom: 25px;">
+                    <div style="font-weight:900; font-size:1.8rem; text-transform:uppercase; color:var(--text-main);">${bookId}</div>
+                    <div style="color:var(--text-main); opacity:0.6; font-weight:700; margin-top:5px;">Bab ${cleanNum}</div>
+                </div>
+                <div class="verses-container">
+                    ${ch.content.map(v => `
+                        <div style="margin-bottom:22px;">
+                            <span style="font-weight:900; font-size:1rem; margin-right:8px; opacity:0.7; color:var(--text-main);">${v.verse}</span>
+                            <span style="line-height:1.8; font-size:1.35rem; color:var(--text-main);">${v.text}</span>
+                        </div>`).join("")}
+                </div>
+                <div style="height:150px;"></div> 
+            </div>`;
+            
+        document.getElementById("app-list").innerHTML = html;
+        updateHeaderUI(true);
+        window.scrollTo(0,0);
+    } catch (e) {
+        console.error(e);
+    }
+}
+
+async function renderBibleSpecificAuto(bookId, chapterIndex, verseNumber) {
+
+document.querySelector('.tabbar-watermark').style.setProperty('background', 'var(--bg)', 'important');
+    
+document.getElementById('search-area').style.display = 'none';
+    document.getElementById('tabbar').classList.add('hidden');
+    
+    const searchInput = document.getElementById('search-input');
+    const searchContainer = document.getElementById('search-container');
+    if (searchInput) searchInput.value = "";
+    if (searchContainer) searchContainer.classList.remove('expanded');
+
+    viewState = 'verses';
+    updateHeaderUI(true);
+    document.getElementById('header-title').innerText = "Alkitab";
+
+    try {
+        const res = await fetch(`data/bible/${bookId}.json?v=${new Date().getTime()}`);
+        const data = await res.json();
+        const ch = data[chapterIndex];
+        if (!ch) return;
+        
+        const cleanNum = String(ch.chapter).replace(/Bab/gi, "").trim();
+        
+        let html = `
+            <div class="bible-reader-view" style="padding:20px 15px; text-align:left;">
+                <div style="text-align:center; margin-bottom: 25px;">
+                    <div style="font-weight:900; font-size:1.8rem; text-transform:uppercase; color:var(--text-main);">${bookId}</div>
+                    <div style="color:var(--text-main); opacity:0.6; font-weight:700; margin-top:5px;">Bab ${cleanNum}</div>
+                </div>
+                <div class="verses-container">`;
+        
+        html += ch.content.map(v => {
+            const isTarget = String(v.verse) === String(verseNumber);
+            const style = isTarget ? `style="background:rgba(255,255,255,0.08); border-radius:12px; padding:15px; margin:10px -5px; border:1px solid rgba(255,255,255,0.15);"` : `style="margin-bottom:22px;"`;
+            return `<div id="v-${v.verse}" ${style}><span style="font-weight:900; font-size:1rem; margin-right:8px; opacity:0.7; color:var(--text-main);">${v.verse}</span><span style="line-height:1.8; font-size:1.35rem; color:var(--text-main);">${v.text}</span></div>`;
+        }).join("");
+
+        html += `</div><div style="height:150px;"></div></div>`;
+        
+        document.getElementById("app-list").innerHTML = html;
+        
+        setTimeout(() => {
+            const el = document.getElementById(`v-${verseNumber}`);
+            if (el) el.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }, 200);
+    } catch(e) {
+        console.error(e);
+    }
+}
+function updateHeaderUI(isCenter) {
+    const titleHeader = document.getElementById('header-title');
+    const darkToggle = document.getElementById('dark-toggle');
+    const header = document.getElementById('main-header');
+    const backBtn = document.getElementById('back-button');
+    if (header) header.style.minHeight = isCenter ? '90px' : '70px';
+    if (titleHeader) {
+        titleHeader.style.position = isCenter ? 'absolute' : 'static';
+        titleHeader.style.left = isCenter ? '50%' : 'auto';
+        titleHeader.style.transform = isCenter ? 'translateX(-50%)' : 'none';
+    }
+    if (darkToggle) darkToggle.style.display = isCenter ? 'none' : 'flex';
+    if (backBtn) backBtn.style.display = isCenter ? 'flex' : 'none';
+}
+
+function renderList(type, filteredItems = null) {
+    const listContainer = document.getElementById("app-list");
+    updateHeaderUI(false);
+    const items = filteredItems || allItems.filter(i => i.type === type);
+    if (items.length === 0) { listContainer.innerHTML = '<div style="text-align:center;padding:50px;opacity:0.5;">Tiada Data</div>'; return; }
+    listContainer.innerHTML = items.map((item) => `<div class="card" onclick="openDetail('${item.id}', '${item.type}')"><div class="title" style="text-align:left;">${item.title}</div></div>`).join("");
+}
+
 function openDetail(id, type) {
-    if (type === 'bible') { openBibleChapters(id); return; }
+    if (type === 'bible') { 
+        openBibleChapters(id); 
+        return; 
+    }
     viewState = 'detail';
     const item = allItems.find(i => String(i.id) === String(id) && i.type === type);
     if (!item) return;
+    
+    const titles = { 
+        'hymns': 'Longoi', 
+        'psalms': 'Zabur', 
+        'prayers': 'Doa', 
+        'liturgies': 'Hoturan', 
+        'others': 'Vokon' 
+    };
+    document.getElementById('header-title').innerText = titles[type] || "Detail";
+
+    const watermark = document.querySelector('.tabbar-watermark');
+    if (watermark) {
+        watermark.style.setProperty('background', 'var(--bg)', 'important');
+    }
+
+    const searchInput = document.getElementById('search-input');
+    const searchContainer = document.getElementById('search-container');
+    if (searchInput) searchInput.value = "";
+    if (searchContainer) searchContainer.classList.remove('expanded');
 
     updateHeaderUI(true);
-    document.querySelector('.search-wrapper').style.display = 'none';
+    document.getElementById('search-area').style.display = 'none';
     document.getElementById('tabbar').classList.add('hidden');
     
-    // Gunakan struktur yang lebih bersih tanpa pembungkus ekstra
-    document.getElementById("app-list").innerHTML = `
-        <div class="lyrics-view" style="padding: 25px 20px;">
-            <h2 style="text-align:center !important; margin-bottom:45px; font-weight:900; font-size:1.8rem;">
-                ${item.title}
-            </h2>
-            <div class="clean-render-left">${item.content}</div>
-            <div style="height:150px;"></div>
-        </div>`;
+    let contentHtml = "";
+    if (type === 'liturgies') {
+        fetch(`data/liturgies.json?v=${new Date().getTime()}`).then(r => r.json()).then(data => {
+            const entry = data.find(e => String(e.id) === String(id));
+            let finalHtml = "";
+            entry.content_json.section.forEach(sec => {
+                if (sec.section_title) finalHtml += `<h3 style="margin-top:30px; color:var(--text-main); text-transform:uppercase; text-align:left; opacity:0.8;">${sec.section_title}</h3>`;
+                sec.content.forEach(c => {
+                    if (c.header) finalHtml += `<div style="font-weight:900; margin-top:20px; color:var(--text-main); font-size:1.1rem; text-align:left;">${c.header}</div>`;
+                    if (c.paragraph) finalHtml += `<div style="margin-bottom:15px; line-height:1.7; opacity:0.9; text-align:left; color:var(--text-main);">${c.paragraph}</div>`;
+                });
+            });
+            document.getElementById('liturgy-render').innerHTML = finalHtml;
+        });
+        contentHtml = `<div id="liturgy-render">Loading...</div>`;
+    } else {
+        contentHtml = `<div class="clean-render-left" style="text-align:left; color:var(--text-main); white-space:pre-wrap;">${item.content}</div>`;
+    }
+
+    const cleanTitle = item.title.replace(/^\d+\.\s*/, "");
+    document.getElementById("app-list").innerHTML = `<div class="lyrics-view" style="padding: 25px 20px 180px 20px; text-align:left;"><h2 style="text-align:center !important; margin-bottom:45px; font-weight:900; font-size:1.4rem; line-height:1.3; color:var(--text-main);">${cleanTitle}</h2>${contentHtml}<div style="height:150px;"></div></div>`;
     window.scrollTo(0,0);
 }
 
@@ -291,57 +436,54 @@ async function openBibleChapters(bookId) {
     currentBibleBook = bookId;
     viewState = 'chapters';
     updateHeaderUI(true);
-    document.querySelector('.search-wrapper').style.display = 'flex';
+    document.getElementById('header-title').innerText = "Alkitab";
+    document.getElementById('search-area').style.display = 'flex';
     document.getElementById('tabbar').classList.remove('hidden');
     try {
         const res = await fetch(`data/bible/${bookId}.json`);
-        const chapters = await res.json();
-        let html = `<div class="bible-view" style="padding:20px;"><h2 style="text-align:center; margin-bottom:30px; font-weight: 900;">${bookId}</h2><div class="chapter-grid" style="display: grid; grid-template-columns: repeat(5, 1fr); gap: 10px;">`;
-        chapters.forEach((ch, index) => {
+        const data = await res.json();
+        let html = `<div class="bible-view" style="padding:20px;"><h2 style="text-align:center; margin-bottom:30px; font-weight:900; text-transform:uppercase; color:var(--text-main);">${bookId}</h2><div class="chapter-grid" style="display:grid; grid-template-columns:repeat(5,1fr); gap:10px;">`;
+        data.forEach((ch, index) => {
             const cleanNum = String(ch.chapter).replace(/Bab/gi, "").trim();
-            html += `<div class="chapter-card" onclick="renderBibleVerses('${bookId}', ${index})" style="background:var(--surface); padding:15px; text-align:center; border-radius:12px; border: 1px solid var(--border); cursor: pointer;"><div style="font-weight: 900; color: var(--text-main);">${cleanNum}</div></div>`;
+            html += `<div class="chapter-card" onclick="renderBibleVersesAuto('${bookId}', ${index})" style="background:var(--surface); padding:15px; text-align:center; border-radius:12px; border:1px solid var(--border); cursor:pointer;"><div style="font-weight:900; color:var(--text-main);">${cleanNum}</div></div>`;
         });
         html += `</div></div>`;
         document.getElementById("app-list").innerHTML = html;
         window.scrollTo(0,0);
-    } catch(e) { renderList(currentType); }
-}
-
-async function renderBibleVerses(bookId, chapterIndex) {
-    viewState = 'verses';
-    updateHeaderUI(true);
-    document.querySelector('.search-wrapper').style.display = 'none';
-    document.getElementById('tabbar').classList.add('hidden');
-    try {
-        const res = await fetch(`data/bible/${bookId}.json`);
-        const data = await res.json();
-        const ch = data[chapterIndex];
-        const cleanNum = String(ch.chapter).replace(/Bab/gi, "").trim();
-        let html = `<div class="bible-reader-view" style="padding: 20px 15px;"><h2 style="text-align:center; font-weight: 900;">${bookId}</h2><div style="text-align:center; color: #8e8e93; margin-bottom: 30px; font-weight: 600;">Bab ${cleanNum}</div><div class="verses-container">${ch.content.map(v => `<div style="margin-bottom: 22px;"><div style="font-weight: 900; font-size: 1rem; margin-bottom: 4px; opacity: 0.7;">${v.verse}.</div><div style="line-height: 1.8; font-size: 1.35rem;">${v.text}</div></div>`).join("")}</div><div style="height: 150px;"></div></div>`;
-        document.getElementById("app-list").innerHTML = html;
-        window.scrollTo(0,0);
-    } catch (e) { document.getElementById("app-list").innerHTML = ''; }
+    } catch(e) {}
 }
 
 function showListView() {
-    if (currentType === 'bible' && viewState === 'verses') { openBibleChapters(currentBibleBook); return; }
     viewState = 'list';
     updateHeaderUI(false);
-    document.querySelector('.search-wrapper').style.display = 'flex';
+
+    const watermark = document.querySelector('.tabbar-watermark');
+    if (watermark) {
+        watermark.style.setProperty('background', 'var(--surface)', 'important');
+    }
+    
+    document.getElementById('search-area').style.display = 'flex';
     document.getElementById('tabbar').classList.remove('hidden');
+    
+    const titles = { 
+        'hymns': 'Longoi',
+        'bible': 'Alkitab', 
+        'psalms': 'Zabur', 
+        'prayers': 'Doa', 
+        'liturgies': 'Hoturan', 
+        'others': 'Vokon' 
+    };
+    document.getElementById('header-title').innerText = titles[currentType] || "More";
     renderList(currentType);
 }
 
-document.addEventListener('DOMContentLoaded', () => {
-    const activeBtn = document.querySelector('.nav-item.active');
-    if (activeBtn) {
-        const navItems = document.querySelectorAll('.nav-item');
-        const index = Array.from(navItems).indexOf(activeBtn);
-        document.documentElement.style.setProperty('--nav-index', index);
+document.addEventListener('DOMContentLoaded', () => { 
+    loadData(); 
+    const watermark = document.querySelector('.tabbar-watermark');
+    if (watermark) {
+        watermark.style.setProperty('background', 'var(--surface)', 'important');
     }
 });
-
-loadData();
 </script>
 </body>
 </html>
