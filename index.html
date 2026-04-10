@@ -275,7 +275,15 @@ function openDetail(id, type) {
     document.querySelector('.search-wrapper').style.display = 'none';
     document.getElementById('tabbar').classList.add('hidden');
     
-    document.getElementById("app-list").innerHTML = `<div class="lyrics-view" style="padding: 25px 20px;"><h2 style="text-align:center !important; margin-bottom:45px; font-weight:900; font-size:1.8rem;">${item.title}</h2><div class="verse-text">${item.content}</div><div style="height:150px;"></div></div>`;
+    // Gunakan struktur yang lebih bersih tanpa pembungkus ekstra
+    document.getElementById("app-list").innerHTML = `
+        <div class="lyrics-view" style="padding: 25px 20px;">
+            <h2 style="text-align:center !important; margin-bottom:45px; font-weight:900; font-size:1.8rem;">
+                ${item.title}
+            </h2>
+            <div class="clean-render-left">${item.content}</div>
+            <div style="height:150px;"></div>
+        </div>`;
     window.scrollTo(0,0);
 }
 
