@@ -341,7 +341,7 @@ body.dark-mode .nav-item:not(.active) .icon-dim {
 
 .bible-reader-view {
   padding: 20px 15px !important;
-  padding-bottom: calc(env(safe-area-inset-bottom) + 10px) !important;
+  padding-bottom: 120px !important;
 }
 
 .clean-render-left {
