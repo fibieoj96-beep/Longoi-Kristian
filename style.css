@@ -326,27 +326,29 @@ body.dark-mode .nav-item:not(.active) .icon-dim {
   font-size: 1.35rem !important;
   line-height: 1.8 !important;
   color: var(--text-main) !important;
-  /* Memastikan teks dibungkus mengikut perenggan asal */
-  white-space: pre-wrap !important; 
-  padding: 0 5px;
+  /* Penting: Mengekalkan format asal enter/jarak dari JSON */
+  white-space: pre-wrap !important;
+  display: block !important;
 }
 
 .clean-render-left p, 
 .clean-render-left div {
-  /* Tukar display ke block supaya ada jarak antara perenggan */
-  display: block !important; 
-  margin-bottom: 20px !important;
-  width: 100% !important;
+  margin-bottom: 1.5rem !important;
+  display: block !important;
 }
 
+/* JANGAN paksa span jadi block supaya ayat tidak pecah ke bawah */
 .clean-render-left span {
-  /* Span tidak boleh block, kalau tidak ayat akan terputus baris */
-  display: inline !important; 
+  display: inline !important;
   width: auto !important;
 }
 
 .clean-render-left br {
-  display: block !important;
   content: "";
-  margin-bottom: 10px;
+  display: block !important;
+  margin-bottom: 10px !important;
+}
+
+#app-list .title span {
+  color: var(--text-dim) !important;
 }
