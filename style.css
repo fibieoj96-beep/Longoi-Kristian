@@ -209,8 +209,7 @@ main {
 
 .tabbar {
   position: fixed !important;
-  top: -15px;
-  bottom: 0 !important;
+  bottom: -25px !important;
   left: 0 !important;
   width: 100% !important;
   height: calc(env(safe-area-inset-bottom) + 52px) !important;
