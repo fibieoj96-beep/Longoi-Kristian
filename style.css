@@ -212,7 +212,7 @@ main {
   bottom: 0 !important;
   left: 0 !important;
   width: 100% !important;
-  height: calc(env(safe-area-inset-bottom) + 80px) !important;
+  height: calc(env(safe-area-inset-bottom) + 65px) !important;
   background: var(--surface) !important;
   display: flex !important;
   justify-content: space-evenly !important;
