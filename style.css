@@ -217,7 +217,7 @@ main {
   display: flex !important;
   justify-content: space-evenly !important;
   align-items: center !important;
-  padding-bottom: env(safe-area-inset-bottom) !important;
+  padding-bottom: 0 !important;
   border-top: 1px solid var(--border) !important;
   z-index: 2000 !important;
 }
