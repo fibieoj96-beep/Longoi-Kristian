@@ -432,33 +432,39 @@ function openDetail(id, type) {
     window.scrollTo(0,0);
 }
 
-function openBibleChapters(bookId) {
+async function openBibleChapters(bookId) {
     currentBibleBook = bookId;
     viewState = 'chapters';
     updateHeaderUI(true);
     document.getElementById('header-title').innerText = "Alkitab";
+    document.getElementById('search-area').style.display = 'flex';
+    document.getElementById('tabbar').classList.remove('hidden');
     
-    const book = allItems.find(i => i.id === bookId && i.type === 'bible');
-    if (!book) return;
-
-    
-    let html = `
-        <div class="chapter-select-view" style="padding: 20px; padding-bottom: 150px; min-height: 80vh; display: flex; flex-direction: column;">
-            <h2 style="text-align:center; margin-bottom:30px; text-transform:uppercase; color:var(--text-main);">${book.title}</h2>
-            <div class="chapter-grid" style="display:grid; grid-template-columns: repeat(5, 1fr); gap: 10px;">
-                ${book.chapters.map((ch, index) => `
-                    <div class="chapter-box" onclick="renderBibleVersesAuto('${bookId}', ${index})" 
-                         style="aspect-ratio:1/1; background:var(--surface); border-radius:12px; display:flex; align-items:center; justify-content:center; font-weight:900; border:1px solid var(--border); color:var(--text-main);">
-                        ${index + 1}
-                    </div>
-                `).join('')}
-            </div>
-        </div>`;
-    
-    document.getElementById("app-list").innerHTML = html;
-    window.scrollTo(0,0);
-    } catch(e) {}
+    try {
+        const res = await fetch(`data/bible/${bookId}.json`);
+        const data = await res.json();
+        
+        let html = `
+            <div class="bible-view" style="padding:20px; padding-bottom:180px; min-height:100vh; box-sizing:border-box;">
+                <h2 style="text-align:center; margin-bottom:30px; font-weight:900; text-transform:uppercase; color:var(--text-main);">${bookId}</h2>
+                <div class="chapter-grid" style="display:grid; grid-template-columns:repeat(5,1fr); gap:10px;">`;
+        
+        data.forEach((ch, index) => {
+            const cleanNum = String(ch.chapter).replace(/Bab/gi, "").trim();
+            html += `
+                <div class="chapter-card" onclick="renderBibleVersesAuto('${bookId}', ${index})" style="background:var(--surface); aspect-ratio:1/1; display:flex; align-items:center; justify-content:center; border-radius:12px; border:1px solid var(--border); cursor:pointer;">
+                    <div style="font-weight:900; color:var(--text-main); font-size:1.1rem;">${cleanNum}</div>
+                </div>`;
+        });
+        
+        html += `</div></div>`;
+        document.getElementById("app-list").innerHTML = html;
+        window.scrollTo(0,0);
+    } catch(e) {
+        console.error(e);
+    }
 }
+
 
 function showListView() {
     viewState = 'list';
