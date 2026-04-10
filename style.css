@@ -313,23 +313,20 @@ body.dark-mode .nav-item:not(.active) .icon-dim {
   bottom: 0 !important;
   left: 0 !important;
   width: 100% !important;
-  height: calc(env(safe-area-inset-bottom) + 12px) !important;
+  height: env(safe-area-inset-bottom) !important;
   display: flex !important;
-  align-items: flex-start !important;
-  padding-top: 4px !important;
+  align-items: center !important;
   justify-content: center !important;
   font-size: 8px !important;
   font-weight: 800 !important;
   color: var(--text-dim) !important;
-  z-index: 999999 !important;
+  z-index: 2001 !important;
   pointer-events: none !important;
-  border-top: 0px solid transparent !important;
-  visibility: visible !important;
-  opacity: 1 !important;
-  transition: background 0.2s ease;
+  background: transparent !important;
   text-transform: uppercase;
   letter-spacing: 0.5px;
 }
+
 
 
 #app-list {
