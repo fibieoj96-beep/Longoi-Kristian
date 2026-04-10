@@ -320,33 +320,33 @@ body.dark-mode .nav-item:not(.active) .icon-dim {
   box-sizing: border-box;
 }
 
-.clean-render-left,
-.clean-render-left p,
-.clean-render-left div,
-.clean-render-left span {
+.clean-render-left {
   text-align: left !important;
-  margin-top: 0 !important;
-  margin-left: 0 !important;
-  padding-left: 0 !important;
-  display: block !important;
   width: 100% !important;
   font-size: 1.35rem !important;
   line-height: 1.8 !important;
   color: var(--text-main) !important;
-  white-space: normal !important;
+  /* Memastikan teks dibungkus mengikut perenggan asal */
+  white-space: pre-wrap !important; 
+  padding: 0 5px;
 }
 
-.clean-render-left p,
+.clean-render-left p, 
 .clean-render-left div {
-  margin-bottom: 15px !important;
+  /* Tukar display ke block supaya ada jarak antara perenggan */
+  display: block !important; 
+  margin-bottom: 20px !important;
+  width: 100% !important;
+}
+
+.clean-render-left span {
+  /* Span tidak boleh block, kalau tidak ayat akan terputus baris */
+  display: inline !important; 
+  width: auto !important;
 }
 
 .clean-render-left br {
+  display: block !important;
   content: "";
-  display: block;
-  margin-bottom: 5px;
-}
-
-#app-list .title span {
-  color: var(--text-dim) !important;
+  margin-bottom: 10px;
 }
