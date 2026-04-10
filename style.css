@@ -271,7 +271,7 @@ main {
 }
 
 .nav-item.active {
-  transform: translateY(-12px);
+  transform: translateY(-22px);
 }
 
 .nav-item.active .icon-dim {
@@ -280,8 +280,8 @@ main {
 
 .nav-item.active .icon-active {
   display: block !important;
-  width: 30px !important;
-  height: 30px !important;
+  width: 36px !important;
+  height: 36px !important;
   position: relative;
   z-index: 100;
   filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.15));
@@ -290,7 +290,7 @@ main {
 .nav-item.active .nav-label {
   font-weight: 900;
   color: var(--text-main);
-  font-size: 10px;
+  font-size: 11px;
   margin-top: 4px;
 }
 
