@@ -33,7 +33,7 @@ For the best experience (removing the browser address bar and footer), follow th
 
 | Main Interface (Light) | Dark Mode |
 | :---: | :---: |
-| <img src="screenshots/main_ui.png" width="250"> | <img src="screenshots/dark_mode.png" width="250"> |
+| <img src="screenshots/main_ui.PNG" width="250"> | <img src="screenshots/dark_mode.PNG" width="250"> |
 
 ---
 
