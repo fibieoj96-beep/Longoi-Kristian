@@ -98,6 +98,7 @@ if ('serviceWorker' in navigator) {
         };
     });
 }
+
 let allItems = [];
 let currentType = 'hymns';
 let viewState = 'list';
@@ -240,7 +241,7 @@ async function handleSearch() {
 
 async function renderBibleSearchList(bookId, chapterNum) {
     try {
-        const data = await fastFetch(`data/bible/${bookId}.json?v=${new Date().getTime()}`);
+        const data = await fastFetch(`data/bible/${bookId}.json`);
         const ch = data.find(c => String(c.chapter).includes(String(chapterNum)));
         if (ch) {
             const listContainer = document.getElementById("app-list");
@@ -283,7 +284,7 @@ async function renderBibleVersesAuto(bookId, chapterIndex) {
     if (searchContainer) searchContainer.classList.remove('expanded');
 
     try {
-        const data = await fastFetch(`data/bible/${bookId}.json?v=${new Date().getTime()}`);
+        const data = await fastFetch(`data/bible/${bookId}.json`);
         const ch = data[chapterIndex];
         if (!ch) return;
         const cleanNum = String(ch.chapter).replace(/Bab/gi, "").trim();
@@ -321,7 +322,7 @@ async function renderBibleSpecificAuto(bookId, chapterIndex, verseNumber) {
     document.getElementById('header-title').innerText = "Alkitab";
 
     try {
-        const data = await fastFetch(`data/bible/${bookId}.json?v=${new Date().getTime()}`);
+        const data = await fastFetch(`data/bible/${bookId}.json`);
         const ch = data[chapterIndex];
         if (!ch) return;
         const cleanNum = String(ch.chapter).replace(/Bab/gi, "").trim();
@@ -393,7 +394,7 @@ async function openDetail(id, type) {
     
     let contentHtml = "";
     if (type === 'liturgies') {
-        const data = await fastFetch(`data/liturgies.json?v=${new Date().getTime()}`);
+        const data = await fastFetch(`data/liturgies.json`);
         const entry = data.find(e => String(e.id) === String(id));
         let finalHtml = "";
         entry.content_json.section.forEach(sec => {
@@ -407,14 +408,16 @@ async function openDetail(id, type) {
                     finalHtml += `<div style="font-weight:900; margin-top:20px; color:var(--text-main); font-size:1.1rem; text-align:left; white-space:normal !important; overflow:visible !important; text-overflow:clip !important; display:block !important;">${cleanHead}</div>`;
                 }
                 if (c.paragraph) {
-                    finalHtml += `<div style="margin-bottom:15px; line-height:1.7; opacity:0.9; text-align:left; color:var(--text-main); white-space:normal !important; display:block !important;">${c.paragraph}</div>`;
+                    let cleanPara = c.paragraph.replace(/<[^>]*>/g, ''); 
+                    cleanPara = cleanPara.replace(/\.\.\./g, '').replace(/\.\./g, '');
+                    finalHtml += `<div style="margin-bottom:15px; line-height:1.7; opacity:0.9; text-align:left; color:var(--text-main); white-space:pre-wrap !important; display:block !important;">${cleanPara}</div>`;
                 }
             });
         });
         contentHtml = `<div id="liturgy-render">${finalHtml}</div>`;
     } else {
         let cleanText = item.content.replace(/\.\.\./g, '').replace(/\.\./g, '');
-        contentHtml = `<div class="clean-render-left" style="text-align:left; color:var(--text-main); white-space:pre-wrap;">${cleanText}</div>`;
+        contentHtml = `<div class="clean-render-left" style="text-align:left; color:var(--text-main); white-space:pre-wrap !important; line-height:1.8; font-size:1.35rem;">${cleanText}</div>`;
     }
 
     const cleanTitle = item.title.replace(/^\d+\.\s*/, "").replace(/\.\.\./g, '');
