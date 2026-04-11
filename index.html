@@ -241,7 +241,7 @@ async function handleSearch() {
 
 async function renderBibleSearchList(bookId, chapterNum) {
     try {
-        const data = await fastFetch(`data/bible/${bookId}.json`);
+        const data = await fastFetch(`./data/bible/${bookId}.json`);
         const ch = data.find(c => String(c.chapter).includes(String(chapterNum)));
         if (ch) {
             const listContainer = document.getElementById("app-list");
@@ -284,7 +284,7 @@ async function renderBibleVersesAuto(bookId, chapterIndex) {
     if (searchContainer) searchContainer.classList.remove('expanded');
 
     try {
-        const data = await fastFetch(`data/bible/${bookId}.json`);
+        const data = await fastFetch(`./data/bible/${bookId}.json`);
         const ch = data[chapterIndex];
         if (!ch) return;
         const cleanNum = String(ch.chapter).replace(/Bab/gi, "").trim();
@@ -322,7 +322,7 @@ async function renderBibleSpecificAuto(bookId, chapterIndex, verseNumber) {
     document.getElementById('header-title').innerText = "Alkitab";
 
     try {
-        const data = await fastFetch(`data/bible/${bookId}.json`);
+        const data = await fastFetch(`./data/bible/${bookId}.json`);
         const ch = data[chapterIndex];
         if (!ch) return;
         const cleanNum = String(ch.chapter).replace(/Bab/gi, "").trim();
