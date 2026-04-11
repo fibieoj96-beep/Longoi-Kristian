@@ -118,7 +118,6 @@ header.is-song #header-title {
 header.is-song .header-slot-right {
   display: none;
 }
-
 .sun-icon { display: none !important; }
 body.dark-mode .sun-icon { display: block !important; }
 body.dark-mode .moon-icon { display: none; }
@@ -229,7 +228,6 @@ main {
   pointer-events: none !important;
 }
 
-
 .nav-indicator {
   position: absolute;
   top: -15px;
@@ -328,15 +326,23 @@ body.dark-mode .nav-item:not(.active) .icon-dim {
   letter-spacing: 0.5px;
 }
 
-
-
 #app-list {
   padding-bottom: calc(env(safe-area-inset-bottom) + 10px) !important;
 }
 
-.lyrics-view {
-  padding: 25px 20px !important;
-  padding-bottom: calc(env(safe-area-inset-bottom) + 10px) !important;
+.lyrics-view, .bible-reader-view, #liturgy-render {
+  padding-bottom: 180px !important;
+}
+
+.lyrics-view h2, 
+.lyrics-view div, 
+#liturgy-render div, 
+#liturgy-render h3 {
+  white-space: normal !important;
+  text-overflow: clip !important;
+  overflow: visible !important;
+  display: block !important;
+  max-width: 100% !important;
 }
 
 .bible-reader-view {
