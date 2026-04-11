@@ -408,28 +408,39 @@ function openDetail(id, type) {
     document.getElementById('search-area').style.display = 'none';
     document.getElementById('tabbar').classList.add('hidden');
     
-    let contentHtml = "";
-    if (type === 'liturgies') {
-        fetch(`data/liturgies.json?v=${new Date().getTime()}`).then(r => r.json()).then(data => {
-            const entry = data.find(e => String(e.id) === String(id));
-            let finalHtml = "";
-            entry.content_json.section.forEach(sec => {
-                if (sec.section_title) finalHtml += `<h3 style="margin-top:30px; color:var(--text-main); text-transform:uppercase; text-align:left; opacity:0.8;">${sec.section_title}</h3>`;
-                sec.content.forEach(c => {
-                    if (c.header) finalHtml += `<div style="font-weight:900; margin-top:20px; color:var(--text-main); font-size:1.1rem; text-align:left;">${c.header}</div>`;
-                    if (c.paragraph) finalHtml += `<div style="margin-bottom:15px; line-height:1.7; opacity:0.9; text-align:left; color:var(--text-main);">${c.paragraph}</div>`;
-                });
+   let contentHtml = "";
+if (type === 'liturgies') {
+    fetch(`data/liturgies.json?v=${new Date().getTime()}`).then(r => r.json()).then(data => {
+        const entry = data.find(e => String(e.id) === String(id));
+        let finalHtml = "";
+        entry.content_json.section.forEach(sec => {
+            if (sec.section_title) {
+                finalHtml += `<h3 style="margin-top:30px; color:var(--text-main); text-transform:uppercase; text-align:left; opacity:0.8; white-space:normal !important; overflow:visible !important;">${sec.section_title}</h3>`;
+            }
+            sec.content.forEach(c => {
+                if (c.header) {
+                    finalHtml += `<div style="font-weight:900; margin-top:20px; color:var(--text-main); font-size:1.1rem; text-align:left; white-space:normal !important; overflow:visible !important; text-overflow:clip !important; display:block !important;">${c.header}</div>`;
+                }
+                if (c.paragraph) {
+                    finalHtml += `<div style="margin-bottom:15px; line-height:1.7; opacity:0.9; text-align:left; color:var(--text-main); white-space:normal !important; display:block !important;">${c.paragraph}</div>`;
+                }
             });
-            document.getElementById('liturgy-render').innerHTML = finalHtml;
         });
-        contentHtml = `<div id="liturgy-render">Loading...</div>`;
-    } else {
-        contentHtml = `<div class="clean-render-left" style="text-align:left; color:var(--text-main); white-space:pre-wrap;">${item.content}</div>`;
-    }
+        document.getElementById('liturgy-render').innerHTML = finalHtml;
+    });
+    contentHtml = `<div id="liturgy-render">Loading...</div>`;
+} else {
+    contentHtml = `<div class="clean-render-left" style="text-align:left; color:var(--text-main); white-space:pre-wrap;">${item.content}</div>`;
+}
 
-    const cleanTitle = item.title.replace(/^\d+\.\s*/, "");
-    document.getElementById("app-list").innerHTML = `<div class="lyrics-view" style="padding: 25px 20px 180px 20px; text-align:left;"><h2 style="text-align:center !important; margin-bottom:45px; font-weight:900; font-size:1.4rem; line-height:1.3; color:var(--text-main);">${cleanTitle}</h2>${contentHtml}<div style="height:150px;"></div></div>`;
-    window.scrollTo(0,0);
+const cleanTitle = item.title.replace(/^\d+\.\s*/, "");
+document.getElementById("app-list").innerHTML = `
+    <div class="lyrics-view" style="padding: 25px 20px 180px 20px; text-align:left;">
+        <h2 style="text-align:center !important; margin-bottom:45px; font-weight:900; font-size:1.4rem; line-height:1.3; color:var(--text-main); white-space:normal !important; overflow:visible !important;">${cleanTitle}</h2>
+        ${contentHtml}
+    </div>`;
+window.scrollTo(0,0);
+
 }
 
 async function openBibleChapters(bookId) {
