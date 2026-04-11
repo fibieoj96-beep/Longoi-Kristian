@@ -200,7 +200,7 @@ async function handleSearch() {
         if (bibleJumpMatch) {
             const bookSearch = (bibleJumpMatch[1] || "").trim();
             const chapterNum = parseInt(bibleJumpMatch[2]);
-            const verseNum = bibleJumpMatch[3];
+            const verseNum = bibleJumpMatch[3]; // Ambil nombor ayat
             
             const book = allItems.find(i => 
                 i.type === 'bible' && 
@@ -209,8 +209,8 @@ async function handleSearch() {
 
             if (book) {
                 titleHeader.innerText = "Results";
-                /* OFF AUTO JUMP: Sekarang ia panggil renderBibleSearchList bukannya renderBibleSpecificAuto */
-                renderBibleSearchList(book.id, chapterNum);
+                // Hantar verseNum ke sini
+                renderBibleSearchList(book.id, chapterNum, verseNum);
                 return;
             }
         }
@@ -246,26 +246,36 @@ async function handleSearch() {
     renderList(null, filtered);
 }
 
-async function renderBibleSearchList(bookId, chapterNum) {
+async function renderBibleSearchList(bookId, chapterNum, verseNum = null) {
     try {
         const data = await fastFetch(`./data/bible/${bookId}.json`);
         const ch = data.find(c => String(c.chapter).includes(String(chapterNum)));
         if (ch) {
             const listContainer = document.getElementById("app-list");
-            listContainer.innerHTML = ch.content.map(v => `
+            
+            let filteredVerses = ch.content;
+            if (verseNum) {
+                filteredVerses = ch.content.filter(v => String(v.verse) === String(verseNum));
+            }
+
+            if (filteredVerses.length === 0) {
+                listContainer.innerHTML = '<div style="text-align:center;padding:50px;opacity:0.5;">Ayat tidak dijumpai</div>';
+                return;
+            }
+
+            listContainer.innerHTML = filteredVerses.map(v => `
                 <div class="card" onclick="renderBibleSpecificAuto('${bookId}', ${data.indexOf(ch)}, '${v.verse}')">
                     <div class="title" style="text-align:left;">
                         <span style="opacity:0.5; font-size:0.8rem;">${bookId} ${chapterNum}:${v.verse}</span><br>
-                        ${v.text.substring(0, 65)}...
+                        ${v.text}
                     </div>
                 </div>
             `).join("");
         } else {
-            document.getElementById("app-list").innerHTML = '<div style="text-align:center;padding:50px;opacity:0.5;">Tiada Data</div>';
+            document.getElementById("app-list").innerHTML = '<div style="text-align:center;padding:50px;opacity:0.5;">Bab tidak dijumpai</div>';
         }
     } catch (e) { console.error(e); }
 }
-
 function changeCategory(type, el) {
     currentType = type;
     viewState = 'list';
