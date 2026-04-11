@@ -246,7 +246,6 @@ async function handleSearch() {
     renderList(null, filtered);
 }
 
-
 async function renderBibleSearchList(bookId, chapterNum) {
     try {
         const data = await fastFetch(`./data/bible/${bookId}.json`);
