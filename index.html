@@ -87,11 +87,17 @@
 
 <script>
 if ('serviceWorker' in navigator) {
-    navigator.serviceWorker.register('./sw.js').then(() => {
-        console.log("Offline Ready");
+    navigator.serviceWorker.register('./sw.js').then(reg => {
+        reg.onupdatefound = () => {
+            const installingWorker = reg.installing;
+            installingWorker.onstatechange = () => {
+                if (installingWorker.state === 'installed' && navigator.serviceWorker.controller) {
+                    location.reload(); 
+                }
+            };
+        };
     });
 }
-
 let allItems = [];
 let currentType = 'hymns';
 let viewState = 'list';
@@ -138,7 +144,7 @@ async function loadData() {
     const categories = ["hymns", "bible", "psalms", "prayers", "liturgies", "others"];
     const fetchPromises = categories.map(async (cat) => {
         try {
-            const data = await fastFetch(`data/${cat}.json?v=${new Date().getTime()}`);
+            const data = await fastFetch(`data/${cat}.json`);
             if (!data) return [];
             return data.map((item, index) => {
                 const finalTitle = item.title || item.name || item.judul || "No Title";
