@@ -237,13 +237,10 @@ main {
   height: 65px;
   background: var(--surface);
   border-radius: 50%;Border-left: 1px solid var(—border) !important;
-  Border-left: 1px solid var(—-border)!important;
   border-top: 1px solid var(--border)!important;
   border: 6px solid var(--surface);
   transition: 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
   z-index: 1;
-  Transform: rotate(35deg);
-  Pointer-events: none;
 }
 
 .nav-item {
