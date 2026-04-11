@@ -201,12 +201,16 @@ async function handleSearch() {
             const bookSearch = (bibleJumpMatch[1] || "").trim();
             const chapterNum = parseInt(bibleJumpMatch[2]);
             const verseNum = bibleJumpMatch[3];
-            const bibleBooks = allItems.filter(i => i.type === 'bible' && i.title.toLowerCase().includes(bookSearch));
-            if (bibleBooks.length > 0) {
-                const book = bibleBooks[0];
-                renderBibleSpecificAuto(book.id, chapterNum - 1, verseNum);
-                document.getElementById('search-input').value = "";
-                document.getElementById('search-container').classList.remove('expanded');
+            
+            const book = allItems.find(i => 
+                i.type === 'bible' && 
+                (i.title.toLowerCase().includes(bookSearch) || bookSearch.includes(i.title.toLowerCase()))
+            );
+
+            if (book) {
+                titleHeader.innerText = "Results";
+                /* OFF AUTO JUMP: Sekarang ia panggil renderBibleSearchList bukannya renderBibleSpecificAuto */
+                renderBibleSearchList(book.id, chapterNum);
                 return;
             }
         }
@@ -215,9 +219,12 @@ async function handleSearch() {
         if (bibleListMatch) {
             const bookSearch = (bibleListMatch[1] || "").trim();
             const chapterNum = parseInt(bibleListMatch[2]);
-            const bibleBooks = allItems.filter(i => i.type === 'bible' && i.title.toLowerCase().includes(bookSearch));
-            if (bibleBooks.length > 0) {
-                const book = bibleBooks[0];
+            const book = allItems.find(i => 
+                i.type === 'bible' && 
+                (i.title.toLowerCase().includes(bookSearch) || bookSearch.includes(i.title.toLowerCase()))
+            );
+
+            if (book) {
                 titleHeader.innerText = "Results";
                 renderBibleSearchList(book.id, chapterNum);
                 return;
@@ -238,6 +245,7 @@ async function handleSearch() {
     titleHeader.innerText = "Results";
     renderList(null, filtered);
 }
+
 
 async function renderBibleSearchList(bookId, chapterNum) {
     try {
