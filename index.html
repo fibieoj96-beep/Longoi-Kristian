@@ -408,10 +408,17 @@ async function openDetail(id, type) {
                     finalHtml += `<div style="font-weight:900; margin-top:20px; color:var(--text-main); font-size:1.1rem; text-align:left; white-space:normal !important; overflow:visible !important; text-overflow:clip !important; display:block !important;">${cleanHead}</div>`;
                 }
                 if (c.paragraph) {
-                    let cleanPara = c.paragraph.replace(/<[^>]*>/g, ''); 
-                    cleanPara = cleanPara.replace(/\.\.\./g, '').replace(/\.\./g, '');
-                    finalHtml += `<div style="margin-bottom:15px; line-height:1.7; opacity:0.9; text-align:left; color:var(--text-main); white-space:pre-wrap !important; display:block !important;">${cleanPara}</div>`;
-                }
+    let cleanPara = c.paragraph;
+    
+    cleanPara = cleanPara.replace(/<[^>]*>/g, ''); 
+    
+    cleanPara = cleanPara.replace(/^([A-Z0-9\s]+ \d+:\d+(-\d+)?)/, '<strong>$1</strong><br><br>');
+    
+    cleanPara = cleanPara.replace(/\.\.\./g, '').replace(/\.\./g, '');
+    
+    finalHtml += `<div style="margin-bottom:25px; line-height:1.7; opacity:0.9; text-align:left; color:var(--text-main); white-space:pre-wrap !important;">${cleanPara}</div>`;
+}
+
             });
         });
         contentHtml = `<div id="liturgy-render">${finalHtml}</div>`;
