@@ -234,7 +234,7 @@ main {
 
 .nav-indicator {
   position: absolute;
-  top: -15px;
+  top: -18px;
   left: calc((100% / 6) * var(--nav-index) + (100% / 12));
   transform: translateX(-50%);
   width: 65px;
