@@ -318,7 +318,7 @@ body.dark-mode .nav-item:not(.active) .icon-dim {
   bottom: 0 !important;
   left: 0 !important;
   width: 100% !important;
-  height: calc(env(safe-area-inset-bottom) + 5px) !important;
+  height: calc(env(safe-area-inset-bottom) + 15px) !important;
   display: flex !important;
   align-items: center !important;
   justify-content: center !important;
