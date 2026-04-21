@@ -118,6 +118,7 @@ header.is-song #header-title {
 header.is-song .header-slot-right {
   display: none;
 }
+
 .sun-icon { display: none !important; }
 body.dark-mode .sun-icon { display: block !important; }
 body.dark-mode .moon-icon { display: none; }
@@ -220,7 +221,8 @@ main {
   border-top: 1px solid var(--border) !important;
   z-index: 2000 !important;
   box-sizing: border-box !important;
-  transform: translateZ(0);
+  transform: translate3d(0, 0, 0);
+  -webkit-transform: translate3d(0, 0, 0);
 }
 
 .tabbar.hidden {
