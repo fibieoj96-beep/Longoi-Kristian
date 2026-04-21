@@ -277,7 +277,7 @@ main {
 }
 
 .nav-item.active {
-  transform: translateY(-20px);
+  transform: translateY(-12px);
 }
 
 .nav-item.active .icon-dim {
@@ -315,7 +315,7 @@ body.dark-mode .nav-item:not(.active) .icon-dim {
 
 .tabbar-watermark {
   position: fixed !important;
-  bottom: 5px !important;
+  bottom: 15px !important;
   left: 0 !important;
   width: 100% !important;
   height: env(safe-area-inset-bottom) !important;
