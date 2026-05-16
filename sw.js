@@ -27,7 +27,6 @@ const ASSETS = [
   './sys/sys_o.dat',
   './sys/sys_pr.dat',
   './sys/sys_p.dat',
-  './sys/manifest.jsont',
   './sys/core/b01.dat',
   './sys/core/b02.dat',
   './sys/core/b03.dat',
