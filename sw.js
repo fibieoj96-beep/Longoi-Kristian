@@ -6,6 +6,21 @@ const ASSETS = [
   './style.css',
   './app.js',
   './manifest.json',
+  './asset/icon/icon.png',
+  './asset/icon/icon-192.png',
+  './asset/icon/icon-512.png',
+  './asset/icon/alkitab-active.png',
+  './asset/icon/alkitab-dim.png',
+  './asset/icon/doa-active.png',
+  './asset/icon/doa-dim.png',
+  './asset/icon/hoturan-active.png',
+  './asset/icon/hoturan-dim.png',
+  './asset/icon/longoi-active.png',
+  './asset/icon/longoi-dim.png',
+  './asset/icon/more-active.png',
+  './asset/icon/more-dim.png',
+  './asset/icon/zabur-active.png',
+  './asset/icon/zabur-dim.png',
   './sys/sys_b.dat',
   './sys/sys_h.dat',
   './sys/sys_l.dat',
@@ -103,10 +118,16 @@ self.addEventListener('activate', (e) => {
   );
 });
 
-self.addEventListener('fetch', (e) => {
-  e.respondWith(
-    caches.match(e.request).then((cachedResponse) => {
-      return cachedResponse || fetch(e.request);
-    })
-  );
+self.addEventListener('fetch', e => {
+  if (e.request.url.includes(self.location.origin + '/Longoi-Kristian/')) {
+    e.respondWith(
+      caches.match(e.request).then(cachedResponse => {
+        if (cachedResponse) {
+          return cachedResponse;
+        }
+        return fetch(e.request);
+      })
+    );
+  }
 });
+
