@@ -85,6 +85,52 @@
 
 <main id="main-content">
     <div class="search-wrapper" id="search-area">
+       <div class="notis-promosi-kecil">
+    <span class="tag-ios">iOS:</span> Gunakan <a href="javascript:void(0)" onclick="bukaPopupPWA()">PWA</a>
+</div>
+
+<div id="pwaPopup" class="pwa-modal">
+    <div class="pwa-modal-content">
+        <span class="tutup-btn" onclick="tutupPopupPWA()">&times;</span>
+        
+        <h3>📱 Cara Pasang di iOS</h3>
+       <p class="pwa-pautan-teks">Link PWA:</p>
+<div class="pwa-salin-container">
+    <a href="https://fibieoj96-beep.github.io/Longoi-Kristian/" target="_blank" class="pwa-link-utama" id="pwaLink">
+        https://fibieoj96-beep.github.io/Longoi-Kristian/
+    </a>
+    
+    <button class="btn-salin-svg" onclick="salinPautanPWA()" title="Salin Pautan">
+    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#007aff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="ikon-rantai">
+        <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path>
+        <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path>
+    </svg>
+    <span class="notifikasi-salin">Disalin!</span>
+</button>
+</div>
+        
+        <hr class="pwa-garis">
+        
+        <ul class="pwa-langkah">
+    <li style="margin-bottom: 15px; display: flex; align-items: flex-start; line-height: 1.5; font-size: 13px; color: #3a3a3c;">
+        <span class="no-langkah" style="background: #007aff; color: white; border-radius: 50%; width: 20px; height: 20px; display: inline-flex; align-items: center; justify-content: center; font-size: 11px; font-weight: bold; margin-right: 10px; flex-shrink: 0;">1</span>
+        <span>Buka pautan di atas menggunakan pelayar <strong>Safari</strong>.</span>
+    </li>
+    <li style="margin-bottom: 15px; display: flex; align-items: flex-start; line-height: 1.5; font-size: 13px; color: #3a3a3c;">
+        <span class="no-langkah" style="background: #007aff; color: white; border-radius: 50%; width: 20px; height: 20px; display: inline-flex; align-items: center; justify-content: center; font-size: 11px; font-weight: bold; margin-right: 10px; flex-shrink: 0;">2</span>
+        <span>Tekan butang <strong>Share ⎋</strong> (ikon kotak dengan anak panah ke atas) di bahagian bawah skrin Safari.</span>
+    </li>
+    <li style="margin-bottom: 5px; display: flex; align-items: flex-start; line-height: 1.5; font-size: 13px; color: #3a3a3c;">
+        <span class="no-langkah" style="background: #007aff; color: white; border-radius: 50%; width: 20px; height: 20px; display: inline-flex; align-items: center; justify-content: center; font-size: 11px; font-weight: bold; margin-right: 10px; flex-shrink: 0;">3</span>
+        <span>Skrol ke bawah dan pilih menu <strong>Add to Home Screen ＋</strong> (Tambah ke Skrin Utama).</span>
+    </li>
+</ul>
+
+        
+        <button class="pwa-btn-faham" onclick="tutupPopupPWA()">Saya Faham</button>
+    </div>
+</div>
+
         <div class="search-box" id="search-container" onclick="expandSearch()">
             <input type="text" id="search-input" placeholder="Search..." onkeyup="handleSearch()">
             <div class="search-btn">
@@ -95,6 +141,7 @@
             </div>
         </div>
     </div>
+   
     <div id="app-list">
         <p style="text-align: center; padding: 40px; color: var(--text-dim);">Loading...</p>
     </div>

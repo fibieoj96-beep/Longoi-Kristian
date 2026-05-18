@@ -534,3 +534,200 @@ body:not(.dark-mode) .sun-icon {
 .ref-text.collapsed { 
     display: none !important; 
 }
+
+.notis-promosi-kecil {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    font-size: 13px; 
+    background-color: var(--bg); 
+    color: var(--text-main);
+    border: 2px solid var(--surface);
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.04);
+    padding: 6px 12px;
+    border-radius: 6px;
+    display: inline-block; 
+    margin: 25px auto 10px 0; 
+}
+
+.notis-promosi-kecil a {
+    color: #007aff; 
+    text-decoration: none;
+    font-weight: 600;
+    border-bottom: 1px dashed rgba(0, 122, 255, 0.3);
+    transition: all 0.2s ease;
+}
+
+.notis-promosi-kecil a:hover, .notis-promosi-kecil a:active {
+    color: #0056b3;
+    border-bottom: 1px solid #0056b3;
+}
+
+.tag-ios {
+    color: #0056b3;
+    font-weight: bold;
+}
+
+.pwa-modal {
+    display: none; 
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    margin: 0;
+    padding: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(4px); 
+    z-index: 2147483647 !important; 
+}
+
+.pwa-modal-content {
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%);
+    margin: 0 auto; 
+    background-color: #ffffff;
+    padding: 24px;
+    border-radius: 16px;
+    width: 85%;
+    max-width: 340px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+    font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+    text-align: left;
+    height: auto;    
+    min-height: max-content; 
+    overflow: visible;  
+    z-index: 2147483648 !important;  
+}
+
+.tutup-btn {
+    position: absolute;
+    right: 15px;
+    top: 10px;
+    color: #aaa;
+    font-size: 24px;
+    font-weight: bold;
+    cursor: pointer;
+}
+.tutup-btn:hover { color: #333; }
+
+.pwa-modal-content h3 {
+    margin-top: 0;
+    color: #1c1c1e;
+    font-size: 18px;
+}
+
+.pwa-pautan-teks {
+    font-size: 12px;
+    color: #8e8e93;
+    margin-bottom: 12px;
+}
+
+.pwa-link-utama {
+    color: #007aff;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 13px;
+    display: inline-block;
+    margin-top: 4px;
+    word-break: break-all;
+}
+
+.pwa-garis {
+    border: 0;
+    border-top: 1px solid #e5e5ea;
+    margin: 15px 0;
+}
+
+.pwa-langkah {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 20px 0;
+}
+.pwa-langkah li {
+    font-size: 13px;
+    color: #3a3a3c;
+    margin-bottom: 12px;
+    line-height: 1.4;
+    display: flex;
+    align-items: flex-start;
+}
+.no-langkah {
+    background: #007aff;
+    color: white;
+    font-weight: bold;
+    border-radius: 50%;
+    width: 18px;
+    height: 18px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 11px;
+    margin-right: 8px;
+    flex-shrink: 0;
+}
+
+.pwa-btn-faham {
+    width: 100%;
+    background: #007aff;
+    color: white;
+    border: none;
+    padding: 10px;
+    border-radius: 8px;
+    font-weight: bold;
+    font-size: 14px;
+    cursor: pointer;
+}
+.pwa-btn-faham:hover { background: #0056b3; }
+
+.pwa-salin-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    margin-bottom: 15px;
+    padding: 2px 0;
+}
+
+.pwa-link-utama {
+    color: #007aff !important;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 13px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    flex-grow: 1;
+}
+
+.btn-salin-svg {
+    background: none;
+    border: none;
+    padding: 4px;
+    cursor: pointer;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.btn-salin-svg:active .ikon-rantai {
+    transform: scale(0.85);
+    stroke: #0056b3; 
+}
+
+.notifikasi-salin {
+    display: none;
+    position: absolute;
+    top: -26px; 
+    right: -10px; 
+    background: #3ddc84;
+    color: #073019;
+    font-size: 10px;
+    font-weight: bold;
+    padding: 2px 6px;
+    border-radius: 4px;
+    white-space: nowrap;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
