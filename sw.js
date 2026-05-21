@@ -1,4 +1,4 @@
-const CACHE_NAME = 'Longoi-Kristian-v29.2 Final';
+const CACHE_NAME = 'Longoi-Kristian-v29.3 Final';
 
 const ASSETS = [
   './',
@@ -27,6 +27,7 @@ const ASSETS = [
   './sys/sys_o.dat',
   './sys/sys_pr.dat',
   './sys/sys_p.dat',
+  './sys/manifest.jsont',
   './sys/core/b01.dat',
   './sys/core/b02.dat',
   './sys/core/b03.dat',
@@ -117,14 +118,16 @@ self.addEventListener('activate', (e) => {
   );
 });
 
-self.addEventListener('fetch', e => {
-  if (e.request.url.includes(self.location.origin + '/Longoi-Kristian/')) {
+self.addEventListener('fetch', (e) => {
+  if (e.request.url.startsWith(self.location.origin)) {
     e.respondWith(
-      caches.match(e.request).then(cachedResponse => {
+      caches.match(e.request).then((cachedResponse) => {
+
         if (cachedResponse) {
           return cachedResponse;
         }
-        return fetch(e.request);
+        return fetch(e.request).catch(() => {
+        });
       })
     );
   }
